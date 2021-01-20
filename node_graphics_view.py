@@ -48,19 +48,21 @@ class QDMGraphicsView(QGraphicsView):
             super().mouseReleaseEvent(event)
 
     def leftMouseButtonPress(self, event: QMouseEvent):
-        releaseEvent = QMouseEvent(QEvent.MouseButtonRelease, event.localPos(), event.screenPos(), Qt.LeftButton,
-                                   Qt.NoButton, event.modifiers())
-        super().mouseReleaseEvent(releaseEvent)
-        self.setDragMode(QGraphicsView.ScrollHandDrag)
-        fakeEvent = QMouseEvent(event.type(), event.localPos(), event.screenPos(), Qt.LeftButton,
-                                event.buttons() | Qt.LeftButton, event.modifiers())
-        super().mousePressEvent(fakeEvent)
+        super().mousePressEvent(event)
+        # releaseEvent = QMouseEvent(QEvent.MouseButtonRelease, event.localPos(), event.screenPos(), Qt.LeftButton,
+        #                            Qt.NoButton, event.modifiers())
+        # super().mouseReleaseEvent(releaseEvent)
+        # self.setDragMode(QGraphicsView.ScrollHandDrag)
+        # fakeEvent = QMouseEvent(event.type(), event.localPos(), event.screenPos(), Qt.LeftButton,
+        #                         event.buttons() | Qt.LeftButton, event.modifiers())
+        # super().mousePressEvent(fakeEvent)
 
     def leftMouseButtonRelease(self, event: QMouseEvent):
-        fakeEvent = QMouseEvent(event.type(), event.localPos(), event.screenPos(), Qt.LeftButton,
-                                event.buttons() | Qt.LeftButton, event.modifiers())
-        super().mousePressEvent(fakeEvent)
-        self.setDragMode(QGraphicsView.NoDrag)
+        super().mouseReleaseEvent(event)
+        # fakeEvent = QMouseEvent(event.type(), event.localPos(), event.screenPos(), Qt.LeftButton,
+        #                         event.buttons() | Qt.LeftButton, event.modifiers())
+        # super().mousePressEvent(fakeEvent)
+        # self.setDragMode(QGraphicsView.NoDrag)
 
     def rightMouseButtonPress(self, event: QMouseEvent):
         print("RM Press")

@@ -3,6 +3,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
 from node_graphics_view import QDMGraphicsView
+from node_node import Node
 from node_scene import Scene
 
 
@@ -16,8 +17,10 @@ class NodeEditorWnd(QWidget):
 
         # 创建画布
         self.scene = Scene()
-        self.grScene = self.scene.grScene
-        self.view = QDMGraphicsView(self.grScene, self)
+        # self.grScene = self.scene.grScene
+        self.view = QDMGraphicsView(self.scene.grScene, self)
+
+        node = Node(self.scene,"My First Node")
 
         box_layout = QVBoxLayout()
         box_layout.setContentsMargins(5, 5, 5, 5)
@@ -26,7 +29,7 @@ class NodeEditorWnd(QWidget):
         self.setWindowTitle("Node Editor")
         self.show()
 
-        self.addDebugContent()
+        # self.addDebugContent()
 
     def addDebugContent(self):
         greenBrush = QBrush(Qt.green)
